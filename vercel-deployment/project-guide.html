@@ -13,26 +13,68 @@
             --dark: #0f1b2d;
             --light: #f8f9fa;
         }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; 
-            margin: 0; 
-            padding: 0; 
             background: linear-gradient(135deg, var(--dark) 0%, #1a2b3c 100%);
             color: white; 
             min-height: 100vh;
         }
         .container { 
-            max-width: 1200px; 
+            max-width: 1400px; 
             margin: 0 auto; 
             padding: 20px; 
         }
         .header { 
             text-align: center; 
             margin-bottom: 40px; 
-            padding: 40px 20px;
+            padding: 60px 20px;
             background: rgba(255,255,255,0.05);
             border-radius: 15px;
             border-left: 5px solid var(--primary);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #4fc3f7 0%, #0066cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header h2 {
+            font-size: 1.5em;
+            margin: 15px 0;
+            color: #4fc3f7;
+        }
+        .header p {
+            font-size: 1.1em;
+            color: #aaa;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .nav-link {
+            background: var(--primary);
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        .nav-link:hover {
+            background: #0052a3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.4);
         }
         .phase { 
             background: rgba(255,255,255,0.08); 
@@ -41,10 +83,17 @@
             border-radius: 12px; 
             border-left: 5px solid var(--primary);
             transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
         .phase:hover {
             background: rgba(255,255,255,0.12);
             transform: translateX(5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .phase h2 {
+            color: #4fc3f7;
+            margin-bottom: 20px;
+            font-size: 1.8em;
         }
         .step { 
             background: #2c3e50; 
@@ -53,6 +102,10 @@
             border-radius: 8px; 
             border-left: 3px solid var(--success);
         }
+        .step h3 {
+            color: #00c851;
+            margin-bottom: 15px;
+        }
         .command { 
             background: #1a252f; 
             padding: 15px; 
@@ -60,34 +113,24 @@
             border-radius: 6px; 
             font-family: 'Courier New', monospace;
             border-left: 3px solid var(--warning);
+            overflow-x: auto;
         }
         .file-link { 
             color: #4fc3f7; 
             text-decoration: none; 
             font-weight: bold;
+            padding: 2px 8px;
+            background: rgba(79, 195, 247, 0.1);
+            border-radius: 4px;
+            transition: all 0.2s ease;
         }
         .file-link:hover { 
-            text-decoration: underline; 
-        }
-        .toggle { 
-            color: var(--primary); 
-            cursor: pointer; 
-            font-weight: bold;
-            margin: 10px 0;
-            display: inline-block;
-        }
-        .evidence { 
-            background: #34495e; 
-            padding: 15px; 
-            border-radius: 5px; 
-            margin: 10px 0; 
-            font-family: monospace; 
-            font-size: 12px;
-            display: none;
+            background: rgba(79, 195, 247, 0.2);
+            text-decoration: underline;
         }
         .responsibility-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin: 30px 0;
         }
@@ -96,6 +139,16 @@
             padding: 25px;
             border-radius: 10px;
             border-top: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        .responsibility-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.3);
+        }
+        .responsibility-card h3 {
+            color: #4fc3f7;
+            margin-bottom: 10px;
+            font-size: 1.2em;
         }
         .progress-bar {
             height: 8px;
@@ -106,9 +159,14 @@
         }
         .progress-fill {
             height: 100%;
-            background: var(--success);
+            background: linear-gradient(90deg, var(--success) 0%, #00e676 100%);
             width: 100%;
             border-radius: 4px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
         }
         .badge {
             display: inline-block;
@@ -117,7 +175,71 @@
             color: white;
             border-radius: 20px;
             font-size: 12px;
-            margin: 5px;
+            margin: 5px 5px 5px 0;
+        }
+        .file-tree {
+            background: #1a252f;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            border-left: 3px solid var(--primary);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: rgba(0, 200, 81, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--success);
+        }
+        .stat-card h4 {
+            color: var(--success);
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+        .stat-card p {
+            color: #aaa;
+            font-size: 0.9em;
+        }
+        ul {
+            margin: 15px 0 15px 20px;
+        }
+        ul li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            font-size: 24px;
+            box-shadow: 0 5px 20px rgba(0, 102, 204, 0.4);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .back-to-top:hover {
+            background: #0052a3;
+            transform: translateY(-5px);
         }
     </style>
 </head>
@@ -126,208 +248,318 @@
         <div class="header">
             <h1>🛡️ CYBER DEFENSE LAB</h1>
             <h2>Complete Project Implementation Guide</h2>
-            <p>From Zero to Production-Grade SOC Platform</p>
-        </div>
-
-        <!-- PROJECT LAB TO COVER THE FOLLOWING RESPONSIBILITIES -->
-        <div class="phase">
-            <h2>🎯 PROJECT LAB TO COVER THE FOLLOWING RESPONSIBILITIES</h2>
-            <div class="responsibility-grid">
-                <div class="responsibility-card">
-                    <h3>🔍 SIEM Implementation & Optimization</h3>
-                    <p>Security Information and Event Management</p>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
-                    <span class="badge">Elastic Stack</span>
-                    <span class="badge">Kubernetes</span>
+            <p>Production-Grade Security Operations Center Platform</p>
+            <div class="nav-links">
+                <a href="#overview" class="nav-link">📋 Overview</a>
+                <a href="#setup" class="nav-link">🔧 Setup</a>
+                <a href="#siem" class="nav-link">🏗️ SIEM</a>
+                <a href="#security" class="nav-link">🔐 Security</a>
+                <a href="#visualization" class="nav-link">📊 Dashboards</a>
+                <a href="#troubleshooting" class="nav-link">🔧 Troubleshooting</a>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>23</h4>
+                    <p>Total Files</p>
                 </div>
-                <div class="responsibility-card">
-                    <h3>⚡ Development of Detection Rules</h3>
-                    <p>Use case development and threat detection</p>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
-                    <span class="badge">MITRE ATT&CK</span>
-                    <span class="badge">3 Rules</span>
+                <div class="stat-card">
+                    <h4>52,460</h4>
+                    <p>IOCs Collected</p>
                 </div>
-                <div class="responsibility-card">
-                    <h3>🔌 Connecting Event Sources & Parsers</h3>
-                    <p>Log source integration and data normalization</p>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
-                    <span class="badge">Elastic Agent</span>
-                    <span class="badge">Log Collection</span>
+                <div class="stat-card">
+                    <h4>3</h4>
+                    <p>Detection Rules</p>
                 </div>
-                <div class="responsibility-card">
-                    <h3>🛡️ Vulnerability Management</h3>
-                    <p>Security assessment and patch management</p>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
-                    <span class="badge">Trivy</span>
-                    <span class="badge">Container Scanning</span>
-                </div>
-                <div class="responsibility-card">
-                    <h3>💻 Endpoint Detection & Response</h3>
-                    <p>EDR management and threat analysis</p>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
-                    <span class="badge">Elastic Agent</span>
-                    <span class="badge">Real-time Monitoring</span>
-                </div>
-                <div class="responsibility-card">
-                    <h3>🌐 Threat Intelligence</h3>
-                    <p>IOC collection and threat analysis</p>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
-                    <span class="badge">52,460 IOCs</span>
-                    <span class="badge">URLHaus</span>
-                </div>
-                <div class="responsibility-card">
-                    <h3>🚨 Incident Response</h3>
-                    <p>Security incident handling and automation</p>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
-                    <span class="badge">Automation</span>
-                    <span class="badge">K8s CronJobs</span>
-                </div>
-                <div class="responsibility-card">
-                    <h3>🔬 Analysis & Assessment</h3>
-                    <p>Attack simulation and detection validation</p>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
-                    <span class="badge">Attack Simulation</span>
-                    <span class="badge">Detection Testing</span>
+                <div class="stat-card">
+                    <h4>8</h4>
+                    <p>Responsibilities</p>
                 </div>
             </div>
         </div>
 
-        <!-- PHASE 1: ENVIRONMENT SETUP -->
+        <!-- PROJECT LAB RESPONSIBILITIES -->
+        <div class="phase" id="overview">
+            <h2>🎯 PROJECT LAB RESPONSIBILITIES COVERAGE</h2>
+            <p style="margin-bottom: 20px; color: #aaa;">This lab demonstrates complete implementation of SOC Analyst responsibilities through hands-on deployment of enterprise security tools and workflows.</p>
+            
+            <div class="responsibility-grid">
+                <div class="responsibility-card">
+                    <h3>🔍 SIEM Implementation</h3>
+                    <p>Elastic Stack deployment on Kubernetes with full configuration</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+                    <span class="badge">Elasticsearch</span>
+                    <span class="badge">Kibana</span>
+                    <span class="badge">K8s</span>
+                </div>
+                <div class="responsibility-card">
+                    <h3>⚡ Detection Rules Development</h3>
+                    <p>MITRE ATT&CK mapped detection rules with real-world scenarios</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+                    <span class="badge">MITRE ATT&CK</span>
+                    <span class="badge">3 Rules</span>
+                    <span class="badge">JSON</span>
+                </div>
+                <div class="responsibility-card">
+                    <h3>🔌 Event Source Integration</h3>
+                    <p>Log collection, parsing, and normalization pipelines</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+                    <span class="badge">Elastic Agent</span>
+                    <span class="badge">Fleet</span>
+                </div>
+                <div class="responsibility-card">
+                    <h3>🛡️ Vulnerability Management</h3>
+                    <p>Automated container scanning and vulnerability assessment</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+                    <span class="badge">Trivy</span>
+                    <span class="badge">Automated</span>
+                </div>
+                <div class="responsibility-card">
+                    <h3>💻 Endpoint Detection & Response</h3>
+                    <p>EDR agent deployment and real-time threat monitoring</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+                    <span class="badge">Elastic Agent</span>
+                    <span class="badge">Real-time</span>
+                </div>
+                <div class="responsibility-card">
+                    <h3>🌐 Threat Intelligence</h3>
+                    <p>IOC collection from URLhaus with automated ingestion</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+                    <span class="badge">52,460 IOCs</span>
+                    <span class="badge">URLhaus</span>
+                </div>
+                <div class="responsibility-card">
+                    <h3>🚨 Incident Response</h3>
+                    <p>Automated workflows and scheduled security operations</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+                    <span class="badge">CronJobs</span>
+                    <span class="badge">Automation</span>
+                </div>
+                <div class="responsibility-card">
+                    <h3>🔬 Analysis & Testing</h3>
+                    <p>Attack simulation and detection validation framework</p>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div>
+                    <span class="badge">Python</span>
+                    <span class="badge">Testing</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECT STRUCTURE -->
         <div class="phase">
+            <h2>📁 PROJECT STRUCTURE</h2>
+            <div class="file-tree">
+Cyber-Defense-Lab/
+├── 📄 <a href="./README.md" class="file-link">README.md</a>
+├── 📄 <a href="./deploy.sh" class="file-link">deploy.sh</a>
+├── 📄 <a href="./deployment-summary.sh" class="file-link">deployment-summary.sh</a>
+│
+├── 📂 attack-simulations/
+│   └── <a href="./attack-simulations/scenario-1-recon.py" class="file-link">scenario-1-recon.py</a>
+│
+├── 📂 dashboards/
+│   ├── <a href="./dashboards/architecture-dashboard.json" class="file-link">architecture-dashboard.json</a>
+│   └── <a href="./dashboards/live-soc-dashboard.html" class="file-link">live-soc-dashboard.html</a>
+│
+├── 📂 detection-rules/
+│   ├── <a href="./detection-rules/brute-force-detection.json" class="file-link">brute-force-detection.json</a>
+│   ├── <a href="./detection-rules/data-exfiltration-detection.json" class="file-link">data-exfiltration-detection.json</a>
+│   └── <a href="./detection-rules/suspicious-process-execution.json" class="file-link">suspicious-process-execution.json</a>
+│
+├── 📂 kubernetes/
+│   ├── <a href="./kubernetes/namespace.yaml" class="file-link">namespace.yaml</a>
+│   ├── 📂 elastic-stack/
+│   │   ├── <a href="./kubernetes/elastic-stack/elastic-agent.yaml" class="file-link">elastic-agent.yaml</a>
+│   │   ├── <a href="./kubernetes/elastic-stack/elasticsearch-config.yaml" class="file-link">elasticsearch-config.yaml</a>
+│   │   ├── <a href="./kubernetes/elastic-stack/elasticsearch.yaml" class="file-link">elasticsearch.yaml</a>
+│   │   └── <a href="./kubernetes/elastic-stack/kibana.yaml" class="file-link">kibana.yaml</a>
+│   ├── 📂 detection-engine/
+│   └── 📂 incident-response/
+│       └── <a href="./kubernetes/incident-response/trivy-cronjob.yaml" class="file-link">trivy-cronjob.yaml</a>
+│
+├── 📂 threat-intelligence/
+│   ├── <a href="./threat-intelligence/threat_intel_iocs_20251026_183852.json" class="file-link">threat_intel_iocs_20251026_183852.json</a>
+│   ├── <a href="./threat-intelligence/trivy-kibana-scan.json" class="file-link">trivy-kibana-scan.json</a>
+│   ├── <a href="./threat-intelligence/urlhaus-integration.py" class="file-link">urlhaus-integration.py</a>
+│   └── <a href="./threat-intelligence/vulnerability-scan.sh" class="file-link">vulnerability-scan.sh</a>
+│
+└── 📂 vercel-deployment/
+    ├── <a href="./vercel-deployment/live-soc-dashboard.html" class="file-link">live-soc-dashboard.html</a>
+    ├── <a href="./vercel-deployment/package.json" class="file-link">package.json</a>
+    ├── <a href="./vercel-deployment/project-guide.html" class="file-link">project-guide.html</a>
+    └── <a href="./vercel-deployment/vercel.json" class="file-link">vercel.json</a>
+            </div>
+        </div>
+
+        <!-- PHASE 1: ENVIRONMENT SETUP -->
+        <div class="phase" id="setup">
             <h2>🔧 PHASE 1: Environment Setup & Prerequisites</h2>
             
             <div class="step">
                 <h3>Step 1: Tool Installation</h3>
+                <p>Install required security and scanning tools on your system:</p>
                 <div class="command">
-                    brew install aquasecurity/trivy/trivy<br>
-                    brew install falco<br>
-                    pip3 install requests
+brew install aquasecurity/trivy/trivy
+brew install falco
+pip3 install requests
                 </div>
             </div>
 
             <div class="step">
                 <h3>Step 2: Project Structure Creation</h3>
+                <p>Create the complete directory structure for the lab:</p>
                 <div class="command">
-                    cd ~/Desktop<br>
-                    mkdir "Cyber-Defense-Lab"<br>
-                    cd "Cyber-Defense-Lab"<br>
-                    mkdir kubernetes kubernetes/elastic-stack kubernetes/detection-engine kubernetes/incident-response detection-rules threat-intelligence attack-simulations dashboards docs docs/images
+cd ~/Desktop
+mkdir "Cyber-Defense-Lab"
+cd "Cyber-Defense-Lab"
+mkdir kubernetes kubernetes/elastic-stack kubernetes/detection-engine kubernetes/incident-response detection-rules threat-intelligence attack-simulations dashboards
                 </div>
             </div>
 
             <div class="step">
                 <h3>Step 3: Kubernetes Configuration</h3>
+                <p>Configure local Kubernetes environment:</p>
                 <div class="command">
-                    kubectl config use-context docker-desktop<br>
-                    kubectl apply -f <a href="kubernetes/namespace.yaml" class="file-link">kubernetes/namespace.yaml</a>
+kubectl config use-context docker-desktop
+kubectl apply -f <a href="./kubernetes/namespace.yaml" class="file-link">kubernetes/namespace.yaml</a>
+kubectl get namespaces
                 </div>
             </div>
         </div>
 
         <!-- PHASE 2: SIEM DEPLOYMENT -->
-        <div class="phase">
-            <h2>��️ PHASE 2: SIEM Platform Deployment</h2>
+        <div class="phase" id="siem">
+            <h2>🏗️ PHASE 2: SIEM Platform Deployment</h2>
             
             <div class="step">
                 <h3>Step 4: Elasticsearch Deployment</h3>
+                <p>Deploy the core search and analytics engine:</p>
                 <div class="command">
-                    kubectl apply -f <a href="kubernetes/elastic-stack/elasticsearch.yaml" class="file-link">kubernetes/elastic-stack/elasticsearch.yaml</a><br>
-                    kubectl get pods -n security-lab -w
+kubectl apply -f <a href="./kubernetes/elastic-stack/elasticsearch.yaml" class="file-link">kubernetes/elastic-stack/elasticsearch.yaml</a>
+kubectl get pods -n security-lab -w
+# Wait for elasticsearch pod to be Running
                 </div>
             </div>
 
             <div class="step">
                 <h3>Step 5: Kibana Deployment</h3>
+                <p>Deploy the visualization and management interface:</p>
                 <div class="command">
-                    kubectl apply -f <a href="kubernetes/elastic-stack/kibana.yaml" class="file-link">kubernetes/elastic-stack/kibana.yaml</a><br>
-                    kubectl port-forward -n security-lab service/kibana 5601:5601<br>
-                    # Access: http://localhost:5601
+kubectl apply -f <a href="./kubernetes/elastic-stack/kibana.yaml" class="file-link">kubernetes/elastic-stack/kibana.yaml</a>
+kubectl port-forward -n security-lab service/kibana 5601:5601
+# Access Kibana at: http://localhost:5601
                 </div>
             </div>
 
             <div class="step">
                 <h3>Step 6: EDR Implementation</h3>
+                <p>Deploy Elastic Agent for endpoint monitoring:</p>
                 <div class="command">
-                    kubectl apply -f <a href="kubernetes/elastic-stack/elastic-agent.yaml" class="file-link">kubernetes/elastic-stack/elastic-agent.yaml</a>
+kubectl apply -f <a href="./kubernetes/elastic-stack/elastic-agent.yaml" class="file-link">kubernetes/elastic-stack/elastic-agent.yaml</a>
+kubectl get pods -n security-lab | grep elastic-agent
                 </div>
             </div>
         </div>
 
         <!-- PHASE 3: SECURITY OPERATIONS -->
-        <div class="phase">
+        <div class="phase" id="security">
             <h2>🔐 PHASE 3: Security Operations Implementation</h2>
             
             <div class="step">
                 <h3>Step 7: Detection Rule Development</h3>
-                <p>Created 3 MITRE ATT&CK mapped detection rules:</p>
+                <p>Created 3 MITRE ATT&CK mapped detection rules covering:</p>
                 <ul>
-                    <li><a href="detection-rules/suspicious-process-execution.json" class="file-link">Suspicious Process Execution</a> (MITRE TA0002)</li>
-                    <li><a href="detection-rules/brute-force-detection.json" class="file-link">Brute Force Detection</a> (MITRE T1110)</li>
-                    <li><a href="detection-rules/data-exfiltration-detection.json" class="file-link">Data Exfiltration Detection</a> (MITRE T1041)</li>
+                    <li><strong>Suspicious Process Execution</strong> - <a href="./detection-rules/suspicious-process-execution.json" class="file-link">suspicious-process-execution.json</a> (MITRE TA0002 - Execution)</li>
+                    <li><strong>Brute Force Detection</strong> - <a href="./detection-rules/brute-force-detection.json" class="file-link">brute-force-detection.json</a> (MITRE T1110 - Credential Access)</li>
+                    <li><strong>Data Exfiltration Detection</strong> - <a href="./detection-rules/data-exfiltration-detection.json" class="file-link">data-exfiltration-detection.json</a> (MITRE T1041 - Exfiltration)</li>
                 </ul>
+                <p>Import these rules into Kibana Security App → Rules → Import</p>
             </div>
 
             <div class="step">
                 <h3>Step 8: Threat Intelligence Integration</h3>
+                <p>Collect and ingest threat intelligence from URLhaus:</p>
                 <div class="command">
-                    cd threat-intelligence<br>
-                    python3 <a href="threat-intelligence/urlhaus-integration.py" class="file-link">urlhaus-integration.py</a><br>
-                    # Collected 52,460 IOCs
+cd threat-intelligence
+python3 <a href="./threat-intelligence/urlhaus-integration.py" class="file-link">urlhaus-integration.py</a>
+# Successfully collected 52,460 IOCs
+# Output: threat_intel_iocs_*.json
                 </div>
             </div>
 
             <div class="step">
                 <h3>Step 9: Vulnerability Management</h3>
+                <p>Perform container vulnerability scanning:</p>
                 <div class="command">
-                    chmod +x <a href="threat-intelligence/vulnerability-scan.sh" class="file-link">vulnerability-scan.sh</a><br>
-                    ./vulnerability-scan.sh<br>
-                    # Generated trivy-kibana-scan.json
+chmod +x <a href="./threat-intelligence/vulnerability-scan.sh" class="file-link">vulnerability-scan.sh</a>
+./vulnerability-scan.sh
+# Generated: trivy-kibana-scan.json
+cat trivy-kibana-scan.json | jq .
                 </div>
             </div>
 
             <div class="step">
                 <h3>Step 10: Incident Response Automation</h3>
+                <p>Deploy automated vulnerability scanning CronJob:</p>
                 <div class="command">
-                    kubectl apply -f <a href="kubernetes/incident-response/trivy-cronjob.yaml" class="file-link">kubernetes/incident-response/trivy-cronjob.yaml</a>
+kubectl apply -f <a href="./kubernetes/incident-response/trivy-cronjob.yaml" class="file-link">kubernetes/incident-response/trivy-cronjob.yaml</a>
+kubectl get cronjobs -n security-lab
+# Runs daily at midnight for continuous monitoring
                 </div>
             </div>
 
             <div class="step">
                 <h3>Step 11: Attack Simulation & Testing</h3>
+                <p>Execute reconnaissance attack simulation:</p>
                 <div class="command">
-                    python3 <a href="attack-simulations/scenario-1-recon.py" class="file-link">attack-simulations/scenario-1-recon.py</a>
+cd attack-simulations
+python3 <a href="./attack-simulations/scenario-1-recon.py" class="file-link">scenario-1-recon.py</a>
+# Simulates network reconnaissance activity
+# Check Kibana for triggered alerts
                 </div>
             </div>
         </div>
 
         <!-- PHASE 4: VISUALIZATION & DOCUMENTATION -->
-        <div class="phase">
+        <div class="phase" id="visualization">
             <h2>📊 PHASE 4: Visualization & Professional Documentation</h2>
             
             <div class="step">
                 <h3>Step 12: Dashboard Development</h3>
-                <p>Created interactive dashboards:</p>
+                <p>Interactive dashboards for SOC operations:</p>
                 <ul>
-                    <li><a href="dashboards/live-soc-dashboard.html" class="file-link">Live SOC Operations Dashboard</a></li>
-                    <li><a href="dashboards/architecture-dashboard.json" class="file-link">Architecture & Services Dashboard</a></li>
+                    <li><strong>Live SOC Dashboard</strong> - <a href="./dashboards/live-soc-dashboard.html" class="file-link">live-soc-dashboard.html</a> (Real-time operations view)</li>
+                    <li><strong>Architecture Dashboard</strong> - <a href="./dashboards/architecture-dashboard.json" class="file-link">architecture-dashboard.json</a> (System topology)</li>
                 </ul>
+                <div class="command">
+# Open dashboards locally:
+open dashboards/live-soc-dashboard.html
+# Or import JSON into Kibana
+                </div>
             </div>
 
             <div class="step">
                 <h3>Step 13: Security Configuration Enhancement</h3>
+                <p>Apply advanced Elasticsearch security settings:</p>
                 <div class="command">
-                    kubectl apply -f <a href="kubernetes/elastic-stack/elasticsearch-config.yaml" class="file-link">kubernetes/elastic-stack/elasticsearch-config.yaml</a><br>
-                    kubectl rollout restart deployment/elasticsearch -n security-lab
+kubectl apply -f <a href="./kubernetes/elastic-stack/elasticsearch-config.yaml" class="file-link">kubernetes/elastic-stack/elasticsearch-config.yaml</a>
+kubectl rollout restart deployment/elasticsearch -n security-lab
+kubectl rollout status deployment/elasticsearch -n security-lab
                 </div>
             </div>
 
             <div class="step">
                 <h3>Step 14: Deployment Automation</h3>
-                <p>Created automation scripts:</p>
+                <p>Automated deployment and status scripts:</p>
                 <ul>
-                    <li><a href="deploy.sh" class="file-link">deploy.sh</a> - One-click deployment</li>
-                    <li><a href="deployment-summary.sh" class="file-link">deployment-summary.sh</a> - Project status</li>
+                    <li><strong>One-Click Deploy</strong> - <a href="./deploy.sh" class="file-link">deploy.sh</a> (Complete stack deployment)</li>
+                    <li><strong>Status Summary</strong> - <a href="./deployment-summary.sh" class="file-link">deployment-summary.sh</a> (Project verification)</li>
                 </ul>
+                <div class="command">
+chmod +x deploy.sh deployment-summary.sh
+./deploy.sh
+./deployment-summary.sh
+                </div>
             </div>
         </div>
 
@@ -337,60 +569,233 @@
             
             <div class="step">
                 <h3>Step 15: System Verification</h3>
+                <p>Verify all components are running correctly:</p>
                 <div class="command">
-                    kubectl get all -n security-lab<br>
-                    ./deployment-summary.sh
+kubectl get all -n security-lab
+kubectl get pods -n security-lab
+kubectl get services -n security-lab
+./deployment-summary.sh
                 </div>
             </div>
 
             <div class="step">
                 <h3>Step 16: Component Testing</h3>
+                <p>Test each component individually:</p>
                 <div class="command">
-                    # Kibana Access: http://localhost:5601<br>
-                    # Security App Testing<br>
-                    # Dashboard Validation
+# Kibana Access Test
+open http://localhost:5601
+
+# Elasticsearch Health Check
+curl -X GET "localhost:9200/_cluster/health?pretty"
+
+# Verify Detection Rules
+# Navigate to Kibana → Security → Rules
+
+# Test Attack Simulation
+python3 attack-simulations/scenario-1-recon.py
                 </div>
             </div>
         </div>
 
         <!-- TROUBLESHOOTING SECTION -->
-        <div class="phase">
+        <div class="phase" id="troubleshooting">
             <h2>🔧 TROUBLESHOOTING & VERIFICATION COMMANDS</h2>
             
             <div class="step">
                 <h3>Kubernetes Issues</h3>
                 <div class="command">
-                    kubectl get nodes<br>
-                    kubectl config get-contexts<br>
-                    kubectl config use-context docker-desktop
+# Check cluster status
+kubectl get nodes
+kubectl cluster-info
+
+# Verify context
+kubectl config get-contexts
+kubectl config use-context docker-desktop
+
+# Check namespace
+kubectl get namespaces | grep security-lab
                 </div>
             </div>
 
             <div class="step">
                 <h3>Elastic Stack Issues</h3>
                 <div class="command">
-                    kubectl get pods -n security-lab<br>
-                    kubectl logs -n security-lab deployment/elasticsearch<br>
-                    kubectl port-forward -n security-lab service/kibana 5601:5601
+# Check pod status
+kubectl get pods -n security-lab
+
+# View logs
+kubectl logs -n security-lab deployment/elasticsearch
+kubectl logs -n security-lab deployment/kibana
+
+# Restart if needed
+kubectl rollout restart deployment/elasticsearch -n security-lab
+kubectl rollout restart deployment/kibana -n security-lab
+
+# Port forwarding
+kubectl port-forward -n security-lab service/kibana 5601:5601
                 </div>
             </div>
+
+            <div class="step">
+                <h3>Common Issues & Solutions</h3>
+                <ul>
+                    <li><strong>Pod not starting:</strong> Check logs with <code>kubectl logs</code></li>
+                    <li><strong>Port already in use:</strong> Kill existing process or use different port</li>
+                    <li><strong>Connection refused:</strong> Ensure port-forwarding is active</li>
+                    <li><strong>Out of memory:</strong> Increase Docker Desktop resources</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- VERCEL DEPLOYMENT -->
+        <div class="phase">
+            <h2>🚀 VERCEL DEPLOYMENT FILES</h2>
+            <p>Files for hosting dashboards on Vercel:</p>
+            <ul>
+                <li><a href="./vercel-deployment/live-soc-dashboard.html" class="file-link">live-soc-dashboard.html</a> - Production dashboard</li>
+                <li><a href="./vercel-deployment/project-guide.html" class="file-link">project-guide.html</a> - This guide</li>
+                <li><a href="./vercel-deployment/package.json" class="file-link">package.json</a> - Node.js configuration</li>
+                <li><a href="./vercel-deployment/vercel.json" class="file-link">vercel.json</a> - Vercel settings</li>
+            </ul>
         </div>
 
     </div>
 
+    <div class="back-to-top" onclick="scrollToTop()">↑</div>
+
     <script>
-        function toggleEvidence(id) {
-            const element = document.getElementById(id);
-            element.style.display = element.style.display === 'none' ? 'block' : 'none';
+        // Back to top button
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
-        
-        // Add smooth scrolling for better UX
-        document.querySelectorAll('.file-link').forEach(link => {
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
-                alert('File: ' + link.getAttribute('href') + '\n\nThis file is part of the Cyber Defense Lab project structure.');
+                const targetId = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
+
+        // File link click handler
+        document.querySelectorAll('.file-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                const href = link.getAttribute('href');
+                // For local viewing, links will work as expected
+                // For GitHub viewing, show helpful message
+                if (window.location.protocol === 'file:') {
+                    // Local file system - link will work
+                    return true;
+                } else if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                    // Local server - link will work
+                    return true;
+                } else {
+                    // Hosted version - provide information
+                    e.preventDefault();
+                    const fileName = href.replace('./', '');
+                    alert(`📁 File: ${fileName}\n\n✅ This file is part of the Cyber Defense Lab project.\n\n💡 To view:\n1. Clone the repository\n2. Navigate to: ${fileName}\n3. Open the file in your editor`);
+                }
+            });
+        });
+
+        // Add copy button to code blocks
+        document.querySelectorAll('.command').forEach(block => {
+            const copyBtn = document.createElement('button');
+            copyBtn.innerHTML = '📋 Copy';
+            copyBtn.style.cssText = `
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                background: var(--primary);
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 12px;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            `;
+            
+            block.style.position = 'relative';
+            block.appendChild(copyBtn);
+            
+            block.addEventListener('mouseenter', () => {
+                copyBtn.style.opacity = '1';
+            });
+            
+            block.addEventListener('mouseleave', () => {
+                copyBtn.style.opacity = '0';
+            });
+            
+            copyBtn.addEventListener('click', () => {
+                const text = block.innerText.replace('📋 Copy', '').trim();
+                navigator.clipboard.writeText(text).then(() => {
+                    copyBtn.innerHTML = '✅ Copied!';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '📋 Copy';
+                    }, 2000);
+                });
+            });
+        });
+
+        // Progress animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.phase, .responsibility-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add fade in animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Search functionality (optional enhancement)
+        console.log('🛡️ Cyber Defense Lab - Project Guide Loaded');
+        console.log('📊 Total Files: 23');
+        console.log('🔐 Detection Rules: 3');
+        console.log('🌐 IOCs Collected: 52,460');
     </script>
 </body>
 </html>
