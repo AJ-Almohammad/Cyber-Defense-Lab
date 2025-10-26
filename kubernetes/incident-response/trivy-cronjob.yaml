@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: security-scan-cron
+  namespace: security-lab
+spec:
+  schedule: "0 */6 * * *"  # Run every 6 hours
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: trivy-scanner
+            image: aquasec/trivy:0.67.2
+            args:
+            - image
+            - --format
+            - json
+            - --output
+            - /results/trivy-scan-$(date +%Y%m%d-%H%M%S).json
+            - docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+            volumeMounts:
+            - name: scan-results
+              mountPath: /results
+          restartPolicy: OnFailure
+          volumes:
+          - name: scan-results
+            hostPath:
+              path: /tmp/trivy-scans
+              type: DirectoryOrCreate

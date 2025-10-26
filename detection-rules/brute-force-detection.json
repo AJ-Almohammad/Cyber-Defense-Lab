@@ -1,0 +1,29 @@
+{
+  "name": "Multiple Failed Login Attempts",
+  "description": "Detects potential brute force attacks with multiple failed logins",
+  "risk_score": 65,
+  "severity": "high", 
+  "type": "query",
+  "query": "event.action : \"failure\" and event.category : \"authentication\"",
+  "language": "kuery",
+  "filters": [],
+  "enabled": true,
+  "tags": ["MITRE ATT&CK:T1110", "Credential Access"],
+  "threat": [
+    {
+      "framework": "MITRE ATT&CK",
+      "tactic": {
+        "id": "TA0006",
+        "name": "Credential Access", 
+        "reference": "https://attack.mitre.org/tactics/TA0006/"
+      },
+      "technique": [
+        {
+          "id": "T1110",
+          "name": "Brute Force",
+          "reference": "https://attack.mitre.org/techniques/T1110/"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "cyber-defense-lab",
+  "version": "1.0.0",
+  "description": "Professional Security Operations Center demonstrating 8 cybersecurity job responsibilities",
+  "scripts": {
+    "deploy": "vercel --prod"
+  },
+  "keywords": ["cybersecurity", "soc", "siem", "kubernetes", "elasticstack"],
+  "author": "AJ-Almohammad",
+  "license": "MIT"
+}

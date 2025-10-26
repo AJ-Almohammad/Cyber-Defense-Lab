@@ -1,0 +1,23 @@
+# Kubernetes
+**/*.tfstate*
+**/.terraform/
+**/.kube/
+
+# Logs
+*.log
+logs/
+
+# Sensitive data
+**/secrets.yaml
+**/config.env
+**/.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

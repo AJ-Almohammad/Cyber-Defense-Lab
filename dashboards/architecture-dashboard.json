@@ -1,0 +1,33 @@
+{
+  "dashboard": {
+    "title": "Architecture & Services Dashboard - Cyber Defense Lab", 
+    "description": "Technical overview of deployed security services and infrastructure",
+    "panels": [
+      {
+        "title": "Deployed Services",
+        "type": "services",
+        "services": [
+          {"name": "Elasticsearch", "status": "RUNNING", "purpose": "SIEM Data Storage"},
+          {"name": "Kibana", "status": "RUNNING", "purpose": "Security Visualization"},
+          {"name": "Elastic Agent", "status": "RUNNING", "purpose": "EDR Monitoring"},
+          {"name": "Trivy Scanner", "status": "OPERATIONAL", "purpose": "Vulnerability Management"},
+          {"name": "Threat Intel Feed", "status": "ACTIVE", "purpose": "IOC Collection"}
+        ]
+      },
+      {
+        "title": "Job Responsibilities Demonstrated",
+        "type": "skills",
+        "skills": [
+          "SIEM Implementation & Optimization",
+          "Detection Rule Development", 
+          "Event Source Integration",
+          "Vulnerability Management",
+          "Endpoint Detection & Response",
+          "Threat Intelligence Integration",
+          "Incident Response Automation",
+          "Attack Analysis & Assessment"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: security-lab
+  labels:
+    name: security-lab
+    purpose: cyber-defense-training

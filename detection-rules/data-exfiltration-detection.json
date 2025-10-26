@@ -1,0 +1,29 @@
+{
+  "name": "Large Outbound Data Transfer",
+  "description": "Detects potential data exfiltration through large outbound transfers",
+  "risk_score": 75,
+  "severity": "high",
+  "type": "query", 
+  "query": "network.direction : \"outbound\" and network.bytes > 1000000",
+  "language": "kuery",
+  "filters": [],
+  "enabled": true,
+  "tags": ["MITRE ATT&CK:T1041", "Exfiltration"],
+  "threat": [
+    {
+      "framework": "MITRE ATT&CK",
+      "tactic": {
+        "id": "TA0010",
+        "name": "Exfiltration",
+        "reference": "https://attack.mitre.org/tactics/TA0010/"
+      },
+      "technique": [
+        {
+          "id": "T1041",
+          "name": "Exfiltration Over C2 Channel", 
+          "reference": "https://attack.mitre.org/techniques/T1041/"
+        }
+      ]
+    }
+  ]
+}
