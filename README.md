@@ -13,7 +13,7 @@
 
 ### 🛡️ Interactive SOC Dashboard
 **Real-time Security Operations Visualization**  
-🔗 **[Open Live SOC Dashboard](https://cyber-defense-a1d7f80bz-ajalmohammads-projects.vercel.app/live-soc-dashboard.html)** ⚡ *Hosted on Vercel*
+🔗 **[Open Live SOC Dashboard](https://cyber-defense-e4jz90iir-ajalmohammads-projects.vercel.app/live-soc-dashboard.html)** ⚡ *Hosted on Vercel*
 
 **Features**:
 - Real-time threat monitoring
@@ -25,7 +25,7 @@
 
 ### 📖 Complete Project Guide
 **Step-by-Step Implementation Journey**  
-🔗 **[Open Interactive Project Guide](https://cyber-defense-a1d7f80bz-ajalmohammads-projects.vercel.app/project-guide.html)** ⚡ *Hosted on Vercel*
+🔗 **[Open Interactive Project Guide](https://cyber-defense-e4jz90iir-ajalmohammads-projects.vercel.app/project-guide.html)** ⚡ *Hosted on Vercel*
 
 **Features**:
 - Detailed implementation phases
@@ -184,8 +184,8 @@ kubectl port-forward -n security-lab service/kibana 5601:5601
 
 #### 5️⃣ View Live Dashboards
 
-- **Live SOC Dashboard**: https://cyber-defense-a1d7f80bz-ajalmohammads-projects.vercel.app/live-soc-dashboard.html
-- **Project Guide**: https://cyber-defense-a1d7f80bz-ajalmohammads-projects.vercel.app/project-guide.html
+- **Live SOC Dashboard**: https://cyber-defense-e4jz90iir-ajalmohammads-projects.vercel.app/live-soc-dashboard.html
+- **Project Guide**: https://cyber-defense-e4jz90iir-ajalmohammads-projects.vercel.app/project-guide.html
 
 ---
 
@@ -381,7 +381,7 @@ chmod +x deployment-summary.sh
 
 ### Live SOC Dashboard
 
-**Access**: https://cyber-defense-a1d7f80bz-ajalmohammads-projects.vercel.app/live-soc-dashboard.html
+**Access**: https://cyber-defense-e4jz90iir-ajalmohammads-projects.vercel.app/live-soc-dashboard.html
 
 **Features**:
 - Real-time security metrics
@@ -555,8 +555,8 @@ This project is open source and available under the MIT License.
 ### 💬 Get Help
 
 - 🐛 **Issues**: [GitHub Issues](https://github.com/AJ-Almohammad/cyber-defense-lab/issues)
-- 📚 **Documentation**: [Interactive Project Guide](https://cyber-defense-a1d7f80bz-ajalmohammads-projects.vercel.app/project-guide.html)
-- 🛡️ **Dashboard**: [Live SOC Dashboard](https://cyber-defense-a1d7f80bz-ajalmohammads-projects.vercel.app/live-soc-dashboard.html)
+- 📚 **Documentation**: [Interactive Project Guide](https://cyber-defense-e4jz90iir-ajalmohammads-projects.vercel.app/project-guide.html)
+- 🛡️ **Dashboard**: [Live SOC Dashboard](https://cyber-defense-e4jz90iir-ajalmohammads-projects.vercel.app/live-soc-dashboard.html)
 
 ### 👤 Author
 
